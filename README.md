@@ -10,25 +10,18 @@ We can disable all hte protocols we don't need. If you are using the same remote
 
 **How to do it?** 
 Go to the folder where the IRremote library is stored, (should be something like C:\Users\alex\Documents\Arduino\libraries\IRremote\src). 
-Open IRremote.h file and go to line 60. 
-Now add comments to all the protocols you don't need , your code should look like this:
+Open IRremote.h file and go to line 70. 
+Now add comments to all the protocols you don't need , your code should look like this (in our case ony NEC protocol is active):
 
-/****************************************************
- *                     PROTOCOLS
- ****************************************************/
 
-#if (!(defined(DECODE_DENON) || defined(DECODE_JVC) || defined(DECODE_KASEIKYO) \
-|| defined(DECODE_PANASONIC) || defined(DECODE_LG) || defined(DECODE_NEC) || defined(DECODE_SAMSUNG) \
-|| defined(DECODE_SONY) || defined(DECODE_RC5) || defined(DECODE_RC6) || defined(DECODE_HASH) \
-|| defined(DECODE_BOSEWAVE) || defined(DECODE_LEGO_PF) || defined(DECODE_MAGIQUEST) || defined(DECODE_WHYNTER)))
 
-//#define DECODE_DENON        // Includes Sharp
+//#define DECODE_DENON      
 
 //#define DECODE_JVC
 
 //#define DECODE_KASEIKYO
 
-//#define DECODE_PANASONIC    // the same as DECODE_KASEIKYO
+//#define DECODE_PANASONIC    
 
 //#define DECODE_LG
 
