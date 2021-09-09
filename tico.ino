@@ -93,11 +93,12 @@ void setup()
   tft.fillScreen(ST77XX_BLACK);
   
   //Play sound on start
-  tone(4,3000,250);
+  // Pin A5 is actually pin number 19
+  tone(19,3000,250);
   delay(250);
-  tone(4,400,250);
+  tone(19,400,250);
   delay(250);
-  tone(4,3000,250);
+  tone(19,3000,250);
   delay(250);
 
   //Draw blinking eyes animation
@@ -137,9 +138,9 @@ void setup()
   tft.print("TICO");
 
   //Play sound when LCD says "I'M Tico"
-  tone(4,400,250);
+  tone(19,400,250);
   delay(250);
-  tone(4,3000,250);
+  tone(19,3000,250);
   delay(250);
   delay(500);
 
@@ -150,7 +151,7 @@ void setup()
   randomSeed(analogRead(A2));
   pinMode(4, OUTPUT);
 
-  pinMode(A0, INPUT_PULLUP);
+  pinMode(4, INPUT_PULLUP);
   
 
 }
@@ -165,7 +166,7 @@ void loop()
   tft.print("Click");
   tft.setCursor(20, 120);
   tft.print("Start");
-  tone(4,3000,250); 
+  tone(19,3000,250); 
   delay(250);
 
   //The loop will run over and over again until the game is started
@@ -220,14 +221,11 @@ void loop()
   {
     //Button start
     //The following loop will just continue until the button is pressed
-    int button_value = analogRead(A0);
-    while(button_value<500)
+    int button_value = digitalRead(4);
+    while(button_value==0)
     {
       delay(20);    
-      //If you are using a regular button it will also require a pull up resistor
-      //Alternatively you can use an  "Arduino button moudle" that already has a built in resistor
-      //Another option will be to use Arduin's built in pull-up resistor
-      button_value = analogRead(A0); 
+      button_value = digitalRead(4); 
     }
     startGame();
   }
@@ -252,7 +250,7 @@ void loop()
 void startGame()
 {
   Serial.println("====GAME IS ON====");
-  tone(4,3000,250);
+  tone(19,3000,250);
   
   //Clean text area
   tft.fillRect(0,90,130,100,ST77XX_BLACK);
@@ -438,7 +436,7 @@ void startGame()
         tft.setCursor(20, 115);
         tft.print("TAKEN");
   
-        tone(4, 1000, 250);
+        tone(19, 1000, 250);
         delay(250);  
       }
     }//End if -> Check if the move value is valid
